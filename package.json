@@ -1,0 +1,22 @@
+{
+  "name": "amcs-ck",
+  "version": "1.0.0",
+  "description": "AMCS Club Chroma Key Project Starter Code",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Austin-Scott/AMCS-CK.git"
+  },
+  "author": "AMCS Club",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Austin-Scott/AMCS-CK/issues"
+  },
+  "homepage": "https://github.com/Austin-Scott/AMCS-CK#readme",
+  "dependencies": {
+    "fast-png": "^4.0.1"
+  }
+}
