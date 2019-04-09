@@ -51,15 +51,33 @@ let foreground = new Image(png.decode(fs.readFileSync('images/foreground.png')))
 let background = new Image(png.decode(fs.readFileSync('images/background.png')))
 
 console.log('Performing Chroma Key...')
-let resultImage = ChromaKey(foreground, background, {red: 110, green: 181, blue: 121, alpha: 255}, 5)
+let resultImage = ChromaKey(foreground, background, {red: 110, green: 181, blue: 121, alpha: 255}, 40)
 
 console.log('Saving new image...')
 fs.writeFileSync('result.png', png.encode(resultImage))
 
+function isColorSimilar(colorA, colorB, threshold) {
+    if (
+        Math.abs(colorA.red - colorB.red) < threshold &&
+        Math.abs(colorA.green - colorB.green) < threshold &&
+        Math.abs(colorA.blue - colorB.blue) < threshold &&
+        Math.abs(colorA.alpha - colorB.alpha) < threshold) {
+        return true
+    } else {
+        return false
+    }
+}
+
 function ChromaKey(frontImage, backImage, color, threshold) {
     let result = new Image(frontImage)
 
+    for (let x = 0; x < result.width; x++) {
+        for (let y = 0; y < result.height; y++) {
+            if (isColorSimilar(frontImage.getPixel(x, y), color, threshold)) {
+                result.setPixel(x, y, backImage.getPixel(x, y))
+            }
+        }
+    }
 
-    //TODO: Return Chroma Keyed image
     return result
 }
